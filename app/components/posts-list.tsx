@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import style from '../../styles/Home.module.css';
 
 async function getAllPosts() {
@@ -29,8 +30,10 @@ export default async function PostsList() {
         <ul className={style.postList}>
           {posts.map((post: any) => (
             <li key={post.id} className={style.post}>
-              <h2 className={style.title}>{post.title}</h2>
-              <p className={style.author}>By {post.author}</p>
+              <Link prefetch={false} href={`/posts/${post.id}`}>
+                <h2 className={style.title}>{post.title}</h2>
+                <p className={style.author}>By {post.author}</p>
+              </Link>
             </li>
           ))}
         </ul>
